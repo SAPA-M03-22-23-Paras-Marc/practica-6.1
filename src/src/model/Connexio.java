@@ -1,3 +1,5 @@
+package model;
+
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +11,7 @@ import java.sql.Statement;
 //TODO: transformar aquesta classe per a que no només executi les operacions CRUD, sinó que els clients i les comandes siguin objectes >> Encarrecsv2
 //CRUD: Create Read Update Delete
 
-public class Encarrecs {
+public class Connexio {
 
     public static void main(String[] args) {
 
