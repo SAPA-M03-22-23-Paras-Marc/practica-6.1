@@ -1,55 +1,85 @@
 package model;
 
+import model.Candidats;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class CandidatsDAODB implements DAODB<Candidats>{
+public class CandidatsDAODB {
+    private Connection connection;
 
-    @Override
-    public boolean create(Candidats c) {
-        String query = "INSERT INTO " + taula + " (id,nom,dn,dep) VALUES (?,?,?,?)";
-        int r = SQLRW.write(query, c.getProvincia_id(),c.getPersona_id(),c.getCandidatura_id(), c.getNom(), c.getCog1(), c.getCog2());
-        return r > 0;
+    public CandidatsDAODB(Connection connection) {
+        this.connection = connection;
     }
 
-    @Override
-    public boolean read(Candidats candidats) {
-        return false;
+    public void create(Candidats candidat) throws SQLException {
+        String sql = "INSERT INTO candidats (candidat_id, provincia_id, persona_id, candidatura_id, tipus) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, candidat.getCandidat_id());
+            statement.setInt(2, candidat.getProvincia_id());
+            statement.setInt(3, candidat.getPersona_id());
+            statement.setInt(4, candidat.getCandidatura_id());
+            statement.setString(5, String.valueOf(candidat.getTipus()));
+            statement.executeUpdate();
+        }
     }
 
-
-  /*  public boolean read(Candidats c) {
-       /* Candidats er = read(c.getCandidatura_id());
-        if (er == null) return false;
-        c.set(er.getNom(), er.getDn(), er.getDep());
-        return true;
-    } */
-
-    @Override
-    public boolean update(Candidats c) {
-        String query = "UPDATE " + taula + " SET nom=?,dn=?,dep=? WHERE id=?";
-        int r = SQLRW.write(query, c.getProvincia_id(),c.getPersona_id(),c.getCandidatura_id(), c.getNom(), c.getCog1(), c.getCog2());
-        return r > 0;
+    public List<Candidats> read() throws SQLException {
+        List<Candidats> candidats = new ArrayList<>();
+        String sql = "SELECT * FROM candidats";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int candidat_id = resultSet.getInt("candidat_id");
+                int provincia_id = resultSet.getInt("provincia_id");
+                int persona_id = resultSet.getInt("persona_id");
+                int candidatura_id = resultSet.getInt("candidatura_id");
+                char tipus = resultSet.getString("tipus").charAt(0);
+                Candidats candidat = new Candidats(candidat_id, provincia_id, persona_id, candidatura_id, tipus);
+                candidats.add(candidat);
+            }
+        }
+        return candidats;
     }
 
-    @Override
-    public boolean delete(Candidats c) {
-        String query = "DELETE FROM " + taula + " WHERE candidatura_id=?";
-        int r = SQLRW.write(query, c.getCandidatura_id());
-        return r > 0;
+    public Candidats getById(int id) throws SQLException {
+        Candidats candidat = null;
+        String sql = "SELECT * FROM candidats WHERE candidat_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int candidat_id = resultSet.getInt("candidat_id");
+                int provincia_id = resultSet.getInt("provincia_id");
+                int persona_id = resultSet.getInt("persona_id");
+                int candidatura_id = resultSet.getInt("candidatura_id");
+                char tipus = resultSet.getString("tipus").charAt(0);
+                candidat = new Candidats(candidat_id, provincia_id, persona_id, candidatura_id, tipus);
+            }
+        }
+        return candidat;
     }
 
-    @Override
-    public boolean exists(Candidats candidats) {
-        return false;
+    public void update(Candidats candidat) throws SQLException {
+        String sql = "UPDATE candidats SET provincia_id=?, persona_id=?, candidatura_id=?, tipus=? WHERE candidat_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, candidat.getProvincia_id());
+            statement.setInt(2, candidat.getPersona_id());
+            statement.setInt(3, candidat.getCandidatura_id());
+            statement.setString(4, String.valueOf(candidat.getTipus()));
+            statement.setInt(5, candidat.getCandidat_id());
+            statement.executeUpdate();
+        }
     }
 
-    @Override
-    public int count() {
-        return 0;
-    }
-
-    @Override
-    public List<Candidats> all() {
-        return null;
+    public void delete(int id) throws SQLException {
+        String sql = "DELETE FROM candidats WHERE candidat_ide=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        }
     }
 }
