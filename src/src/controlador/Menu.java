@@ -1,5 +1,7 @@
 package controlador;
 
+import model.Connexio;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -7,6 +9,9 @@ public class Menu {
     public static void iniciar() {
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
+
+        Connexio db = new Connexio();
+        db.conectar();
 
         do {
             System.out.println("Seleccione una opción:");
@@ -40,6 +45,7 @@ public class Menu {
         } while (opcion != 0);
 
         scanner.close();
+        db.desconectar();
     }
 }
 

@@ -9,7 +9,7 @@ public class Connexio {
     private final String URL = "jdbc:mysql://localhost:3306/jdbc-pt1";
     private final String USER = "root";
     private final String PASSWORD = "";
-    private Connection conexion = null;
+    private Connection connexio = null;
 
     // Método para establecer la conexión
     public Connection conectar() {
@@ -18,7 +18,7 @@ public class Connexio {
             Class.forName("com.mysql.jdbc.Driver");
 
             // Establecer la conexión
-            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+            connexio = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connexió establerta");
         } catch (ClassNotFoundException e) {
             System.out.println("Error al carregar el driver: " + e.getMessage());
@@ -26,18 +26,22 @@ public class Connexio {
             System.out.println("Error al connectar a la base de dades: " + e.getMessage());
         }
 
-        return conexion;
+        return connexio;
     }
 
     // Método para cerrar la conexión
     public void desconectar() {
         try {
-            if (conexion != null) {
-                conexion.close();
+            if (connexio != null) {
+                connexio.close();
                 System.out.println("Conexió tancada");
             }
         } catch (SQLException e) {
             System.out.println("Error al tancar la connexió: " + e.getMessage());
         }
+    }
+
+    public Connection getConnexio() {
+        return connexio;
     }
 }
