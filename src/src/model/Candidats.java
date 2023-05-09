@@ -1,18 +1,27 @@
 package model;
 
 public class Candidats {
-    int provincia_id, persona_id, candidatura_id;
-    String nom, cog1, cog2;
+    int candidat_id, provincia_id, persona_id, candidatura_id;
+    char tipus;
 
 
 
-    public Candidats(int provincia_id, int persona_id, int candidatura_id, String nom, String cog1, String cog2){
+    public Candidats(int candidat_id, int provincia_id, int persona_id, int candidatura_id, char tipus){
+        this.candidat_id = candidat_id;
         this.provincia_id = provincia_id;
         this.persona_id = persona_id;
         this.candidatura_id = candidatura_id;
-        this.nom  = nom;
-        this.cog1 = cog1;
-        this.cog2 = cog2;
+        this.tipus = tipus;
+
+    }
+
+
+    public void setCandidat_id(int candidat_id) {
+        this.candidat_id = candidat_id;
+    }
+
+    public void setTipus(char tipus) {
+        this.tipus = tipus;
     }
 
     public void setProvincia_id(int provincia_id) {
@@ -27,21 +36,10 @@ public class Candidats {
         this.candidatura_id = candidatura_id;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public int getCandidat_id() {
+        return candidat_id;
     }
 
-    public void setCog1(String cog1) {
-        this.cog1 = cog1;
-    }
-
-    public void setCog2(String cog2) {
-        this.cog2 = cog2;
-    }
-
-    public int getProvincia_id() {
-        return provincia_id;
-    }
 
     public int getPersona_id() {
         return persona_id;
@@ -50,16 +48,12 @@ public class Candidats {
     public int getCandidatura_id() {
         return candidatura_id;
     }
-
-    public String getNom() {
-        return nom;
+    public int getProvincia_id() {
+        return provincia_id;
     }
 
-    public String getCog1() {
-        return cog1;
+    public char getTipus() {
+        return tipus;
     }
 
-    public String getCog2() {
-        return cog2;
-    }
 }

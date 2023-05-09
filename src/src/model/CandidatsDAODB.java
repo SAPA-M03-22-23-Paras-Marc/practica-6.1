@@ -12,12 +12,17 @@ public class CandidatsDAODB implements DAODB<Candidats>{
     }
 
     @Override
-    public boolean read(Candidats c) {
+    public boolean read(Candidats candidats) {
+        return false;
+    }
+
+
+  /*  public boolean read(Candidats c) {
        /* Candidats er = read(c.getCandidatura_id());
         if (er == null) return false;
         c.set(er.getNom(), er.getDn(), er.getDep());
-        return true; */
-    }
+        return true;
+    } */
 
     @Override
     public boolean update(Candidats c) {
