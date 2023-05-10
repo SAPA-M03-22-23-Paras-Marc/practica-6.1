@@ -10,7 +10,7 @@ public class Menu {
 //    public static int mostrar(List<String> opciones, Scanner scanner) {
         for (int i = 0; i < opciones.size(); i++) {
             if (i == opciones.size()-1) {
-                System.out.println(0 + ".e " + opciones.get(i));
+                System.out.println(0 + ". " + opciones.get(i));
             } else {
                 System.out.println((i + 1) + ". " + opciones.get(i));
             }
