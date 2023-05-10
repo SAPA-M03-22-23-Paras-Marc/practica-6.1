@@ -38,15 +38,15 @@ public class CandidatsDAODB {
                 int persona_id = resultSet.getInt("persona_id");
                 int candidatura_id = resultSet.getInt("candidatura_id");
                 char tipus = resultSet.getString("tipus").charAt(0);
-                Candidats candidat = new Candidats(candidat_id, provincia_id, persona_id, candidatura_id, tipus);
-                candidats.add(candidat);
+                Candidats c = new Candidats(candidat_id, provincia_id, persona_id, candidatura_id, tipus);
+                candidats.add(c);
             }
         }
         return candidats;
     }
 
     public Candidats getById(int id) throws SQLException {
-        Candidats candidat = null;
+        Candidats c = null;
         String sql = "SELECT * FROM candidats WHERE candidat_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
@@ -57,20 +57,20 @@ public class CandidatsDAODB {
                 int persona_id = resultSet.getInt("persona_id");
                 int candidatura_id = resultSet.getInt("candidatura_id");
                 char tipus = resultSet.getString("tipus").charAt(0);
-                candidat = new Candidats(candidat_id, provincia_id, persona_id, candidatura_id, tipus);
+                c = new Candidats(candidat_id, provincia_id, persona_id, candidatura_id, tipus);
             }
         }
-        return candidat;
+        return c;
     }
 
-    public void update(Candidats candidat) throws SQLException {
+    public void update(Candidats c) throws SQLException {
         String sql = "UPDATE candidats SET provincia_id=?, persona_id=?, candidatura_id=?, tipus=? WHERE candidat_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, candidat.getProvincia_id());
-            statement.setInt(2, candidat.getPersona_id());
-            statement.setInt(3, candidat.getCandidatura_id());
-            statement.setString(4, String.valueOf(candidat.getTipus()));
-            statement.setInt(5, candidat.getCandidat_id());
+            statement.setInt(1, c.getProvincia_id());
+            statement.setInt(2, c.getPersona_id());
+            statement.setInt(3, c.getCandidatura_id());
+            statement.setString(4, String.valueOf(c.getTipus()));
+            statement.setInt(5, c.getCandidat_id());
             statement.executeUpdate();
         }
     }
