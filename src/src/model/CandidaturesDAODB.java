@@ -16,18 +16,18 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
     }
 
     @Override
-    public  boolean create(Candidatures candidatura) {
+    public  boolean create(Candidatures ca) {
         try {
             String sql = "INSERT INTO candidatures (candidatura_id, eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, candidatura.getCandidatura_id());
-            statement.setInt(2, candidatura.getEleccio_id());
-            statement.setInt(3, candidatura.getCodi_candidatura());
-            statement.setString(4, candidatura.getNom_curt());
-            statement.setString(5, candidatura.getNom_llarg());
-            statement.setInt(6, candidatura.getCodi_acumulacio_provincia());
-            statement.setInt(7, candidatura.getCodi_acumulacio_ca());
-            statement.setInt(8, candidatura.getCodi_acumulacio_nacional());
+            statement.setInt(1, ca.getCandidatura_id());
+            statement.setInt(2, ca.getEleccio_id());
+            statement.setInt(3, ca.getCodi_candidatura());
+            statement.setString(4, ca.getNom_curt());
+            statement.setString(5, ca.getNom_llarg());
+            statement.setInt(6, ca.getCodi_acumulacio_provincia());
+            statement.setInt(7, ca.getCodi_acumulacio_ca());
+            statement.setInt(8, ca.getCodi_acumulacio_nacional());
             int rowsInserted = statement.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {
@@ -37,11 +37,11 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
     }
 
     @Override
-    public boolean read(Candidatures candidatura) {
+    public boolean read(Candidatures ca) {
         try {
             String sql = "SELECT * FROM candidatures WHERE candidatura_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, candidatura.getCandidatura_id());
+            statement.setInt(1, ca.getCandidatura_id());
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 int eleccio_id = resultSet.getInt("eleccio_id");
@@ -51,13 +51,13 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
                 int codi_acumulacio_provincia = resultSet.getInt("codi_acumulacio_provincia");
                 int codi_acumulacio_ca = resultSet.getInt("codi_acumulacio_ca");
                 int codi_acumulacio_nacional = resultSet.getInt("codi_acumulacio_nacional");
-                candidatura.setEleccio_id(eleccio_id);
-                candidatura.setCodi_candidatura(codi_candidatura);
-                candidatura.setNom_curt(nom_curt);
-                candidatura.setNom_llarg(nom_llarg);
-                candidatura.setCodi_acumulacio_provincia(codi_acumulacio_provincia);
-                candidatura.setCodi_acumulacio_ca(codi_acumulacio_ca);
-                candidatura.setCodi_acumulacio_nacional(codi_acumulacio_nacional);
+                ca.setEleccio_id(eleccio_id);
+                ca.setCodi_candidatura(codi_candidatura);
+                ca.setNom_curt(nom_curt);
+                ca.setNom_llarg(nom_llarg);
+                ca.setCodi_acumulacio_provincia(codi_acumulacio_provincia);
+                ca.setCodi_acumulacio_ca(codi_acumulacio_ca);
+                ca.setCodi_acumulacio_nacional(codi_acumulacio_nacional);
                 return true;
             } else {
                 return false;
