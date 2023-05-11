@@ -37,7 +37,9 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
     }
 
     @Override
-    public boolean read(Candidatures ca) {
+    public ArrayList<Candidatures> read(Candidatures ca) {
+        ArrayList<Candidatures> llistaCandidatures = new ArrayList<Candidatures>();
+
         try {
             String sql = "SELECT * FROM candidatures WHERE candidatura_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -58,13 +60,13 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
                 ca.setCodi_acumulacio_provincia(codi_acumulacio_provincia);
                 ca.setCodi_acumulacio_ca(codi_acumulacio_ca);
                 ca.setCodi_acumulacio_nacional(codi_acumulacio_nacional);
-                return true;
+                return llistaCandidatures;
             } else {
-                return false;
+                return llistaCandidatures;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return llistaCandidatures;
         }
     }
 

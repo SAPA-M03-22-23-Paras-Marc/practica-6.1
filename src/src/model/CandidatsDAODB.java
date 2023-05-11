@@ -34,7 +34,8 @@ public class CandidatsDAODB implements DAODB<Candidats> {
     }
 
     @Override
-    public boolean read(Candidats c) {
+    public ArrayList<Candidats> read(Candidats c) {
+        ArrayList<Candidats> llistaCandidats = new ArrayList<Candidats>();
         try {
             String sql = "SELECT * FROM candidats WHERE candidat_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -51,13 +52,13 @@ public class CandidatsDAODB implements DAODB<Candidats> {
                 if (tipus != null && !tipus.isEmpty()) {
                     c.setTipus(tipus.charAt(0));
                 }
-                return true;
+                return llistaCandidats;
             } else {
-                return false;
+                return llistaCandidats;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return llistaCandidats;
         }
     }
 
