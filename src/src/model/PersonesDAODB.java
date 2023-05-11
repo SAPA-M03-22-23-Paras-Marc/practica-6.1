@@ -1,9 +1,6 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,7 +133,11 @@ public class PersonesDAODB implements DAODB<Persones> {
                 String nom = resultSet.getString("nom");
                 String cog1 = resultSet.getString("cog1");
                 String cog2 = resultSet.getString("cog2");
-                Persones persona = new Persones(persona_id, nom, cog1, cog2);
+                String sexe = resultSet.getString("sexe");
+                Date dataNaixement = resultSet.getDate("data_naixement");
+                String dni = resultSet.getString("dni");
+
+                Persones persona = new Persones(persona_id, nom, cog1, cog2, sexe, dataNaixement, dni);
                 persones.add(persona);
 
             }
@@ -150,7 +151,5 @@ public class PersonesDAODB implements DAODB<Persones> {
             return persones;
 
         }
-
     }
-
 }

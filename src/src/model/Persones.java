@@ -1,25 +1,35 @@
 package model;
 
+import java.util.Date;
+
 public class Persones {
 
     int persona_id;
     String nom;
     String cog1;
     String cog2;
+    String sexe;
+    Date dataNaixement;
+    String dni;
 
-    public Persones( String nom, String cog1, String cog2) {
+    public Persones( String nom, String cog1, String cog2, String sexe, Date dataNaixement, String dni) {
         this.nom = nom;
         this.cog1 = cog1;
         this.cog2 = cog2;
-
+        this.sexe = sexe;
+        this.dataNaixement = dataNaixement;
+        this.dni = dni;
     }
 
 
-    public Persones(int persona_id, String nom, String cog1, String cog2) {
+    public Persones(int persona_id, String nom, String cog1, String cog2, String sexe, Date dataNaixement, String dni) {
         this.persona_id = persona_id;
         this.nom = nom;
         this.cog1 = cog1;
         this.cog2 = cog2;
+        this.sexe = sexe;
+        this.dataNaixement = dataNaixement;
+        this.dni = dni;
 
     }
 
