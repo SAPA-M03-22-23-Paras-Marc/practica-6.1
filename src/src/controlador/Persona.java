@@ -1,10 +1,10 @@
 package controlador;
 
+import model.Connexio;
 import model.Persones;
+import model.PersonesDAODB;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Persona {
     public static void menu() {
@@ -19,7 +19,7 @@ public class Persona {
                     crearPersona();
                     break;
                 case 2:
-                    System.out.println("Has seleccionat cercar");
+                    cercarPersona();
                     break;
                 case 3:
                     System.out.println("Has seleccionat modificar");
@@ -47,20 +47,52 @@ public class Persona {
 
         nom = Controlador.demanarDadaAmbRegex("Nom :",".{3,30}");
         cog1 = Controlador.demanarDadaAmbRegex("Primer cognom :",".{3,30}");
-        cog2 = Controlador.demanarDadaAmbRegex("Segon cognom: ", ".{3,30}");
-        sexe = Controlador.demanarDadaAmbRegex("Sexe (M, F): ", "^[MF]$");
-        dataNaixement = Controlador.demanarData("Data de naixement (format AAAA-MM-DD): ");
-        dni = Controlador.demanarDadaAmbRegex("DNI: ", "^\\d{8}[A-Z]");
-
+        cog2 = Controlador.demanarDadaAmbRegex("Segon cognom :", ".*");
+        sexe = Controlador.demanarDadaAmbRegex("Sexe (M, F) :", "^[MF]$");
+        dataNaixement = Controlador.demanarData("Data de naixement (format AAAA-MM-DD) :");
+        dni = Controlador.demanarDadaAmbRegex("DNI :", "^\\d{8}[A-Z]");
 
         Persones p = new Persones(nom, cog1, cog2, sexe, dataNaixement, dni);
 
         System.out.println(p);
 
+        PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
+        if (pdao.create(p)) {
+            System.out.println("S'ha introduit una nova persona correctament.");
+        } else {
+            System.out.println("S'ha produit un error a l'hora d'introduir una nova persona.");
+        }
+    }
 
+    static ArrayList<Persones> cercarPersona() {
+        String nom;
+        String cog1;
+        String cog2;
 
-//        PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
-//        pdao.create()
+        nom = Controlador.demanarDadaAmbRegex("Nom :",".{3,30}");
+        cog1 = Controlador.demanarDadaAmbRegex("Primer cognom :",".{3,30}");
+        cog2 = Controlador.demanarDadaAmbRegex("Segon cognom :", ".*");
+        Persones p = new Persones(nom, cog1, cog2);
+        PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
+
+        ArrayList<Persones> llistaPersones = pdao.read(p);
+//        System.out.println(llistaPersones);
+
+        vista.Persona.mostrarPersones(llistaPersones);
+        return llistaPersones;
+    }
+
+    static void esborrarPersona() {
+        int personaId;
+        ArrayList<Persones> llistaPersones = cercarPersona();
+        if (llistaPersones.size() < 1) {
+            System.out.println("No s'ha trobat ninguna persona. Vols introduir l'id igualment?");
+            if (!Objects.equals(Controlador.demanarDadaAmbRegex("Y/n :", "[Yn]"), "Y")) {
+                return;
+            }
+
+        }
+        personaId = Integer.parseInt(Controlador.demanarDadaAmbRegex("ID: ", "^\\d+$"));
     }
 
 }

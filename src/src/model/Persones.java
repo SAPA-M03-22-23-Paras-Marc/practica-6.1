@@ -44,7 +44,12 @@ public class Persones {
 
         this.dataNaixement = new SimpleDateFormat("yyyy-MM-dd").parse(dataNaixement);
         this.dni = dni;
+    }
 
+    public Persones(String nom, String cog1, String cog2) {
+        this.nom = nom;
+        this.cog1 = cog1;
+        this.cog2 = cog2;
     }
 
     public void setPersona_id(int persona_id) {
@@ -77,6 +82,18 @@ public class Persones {
 
     public String getCog2() {
         return cog2;
+    }
+
+    public String getSexe() {
+        return sexe;
+    }
+
+    public Date getDataNaixement() {
+        return dataNaixement;
+    }
+
+    public String getDni() {
+        return dni;
     }
 
     @Override

@@ -2,26 +2,29 @@ package vista;
 
 import model.Persones;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Persona {
 
-    static String leftAlignFormat = "| %-30s | %-30s | %-30s |%n";
+    static String leftAlignFormat = "| %-5s | %-30s | %-30s | %-30s |%n";
 
     public static void mostrarPersona(Persones p) {
 
-        System.out.format(leftAlignFormat, p.getNom(), p.getCog1(), p.getCog2());
+        System.out.format(leftAlignFormat,p.getPersona_id(), p.getNom(), p.getCog1(), p.getCog2());
     }
 
     public static void mostrarPersones(ArrayList<Persones> persones) {
-        System.out.println("-".repeat(100));
-        System.out.format(leftAlignFormat, "Nom", "Primer Cognom", "Segon Cognom");
-        System.out.println("-".repeat(100));
-        for (Persones p: persones) {
-            mostrarPersona(p);
+        System.out.println("-".repeat(108));
+        System.out.format(leftAlignFormat,"ID", "Nom", "Primer Cognom", "Segon Cognom");
+        System.out.println("-".repeat(108));
+        if (persones.size() != 0) {
+            for (Persones p: persones) {
+                mostrarPersona(p);
+            }
+        }else {
+            System.out.format("| %-104s |\n", "No s'han trobat resultats");
         }
-        System.out.println("-".repeat(100));
+        System.out.println("-".repeat(108));
     }
 
     public static void main(String[] args) {
