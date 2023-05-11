@@ -6,16 +6,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Benvingut al sistema gestor de la base de dades de eleccions generals.");
 
-        Connexio db = new Connexio();
         Connexio.conectar();
-        Controlador controlador = new Controlador();
-        controlador.generarScanner();
+
+        Controlador.generarScanner();
 
         Menu.principal();
 
         Connexio.desconectar();
-        controlador.tancarScanner();
+        Controlador.tancarScanner();
     }
-
-
 }
