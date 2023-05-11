@@ -7,6 +7,13 @@ public class Persones {
     String cog1;
     String cog2;
 
+    public Persones( String nom, String cog1, String cog2) {
+        this.nom = nom;
+        this.cog1 = cog1;
+        this.cog2 = cog2;
+
+    }
+
 
     public Persones(int persona_id, String nom, String cog1, String cog2) {
         this.persona_id = persona_id;

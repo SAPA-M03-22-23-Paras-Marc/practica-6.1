@@ -15,6 +15,11 @@ public class PersonesDAODB implements DAODB<Persones> {
         this.connection = connection;
     }
 
+    public static Object read() {
+        read();
+        return true;
+    }
+
     @Override
     public boolean create(Persones persona) {
         try {

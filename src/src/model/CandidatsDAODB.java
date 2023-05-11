@@ -80,11 +80,11 @@ public class CandidatsDAODB implements DAODB<Candidats> {
     }
 
     @Override
-    public boolean delete(Candidats candidat) {
+    public boolean delete(Candidats c) {
         try {
             String sql = "DELETE FROM candidats WHERE candidat_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, candidat.getCandidat_id());
+            statement.setInt(1, c.getCandidat_id());
             int rowsDeleted = statement.executeUpdate();
             return rowsDeleted > 0;
         } catch (SQLException e) {

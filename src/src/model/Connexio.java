@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 public class Connexio {
     // Variables de conexión
-    private final String URL = "jdbc:mysql://localhost:3306/jdbc-pt1";
-    private final String USER = "root";
-    private final String PASSWORD = "";
-    private Connection connexio = null;
+    private static  final String URL = "jdbc:mysql://localhost:3306/jdbc-pt1";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+    private static  Connection connexio = null;
 
     // Método para establecer la conexión
-    public Connection conectar() {
+    public static Connection conectar() {
         try {
             // Cargar el driver de MySQL
             Class.forName("com.mysql.jdbc.Driver");
