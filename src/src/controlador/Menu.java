@@ -48,14 +48,13 @@ public class Menu {
         while (!opcionValida) {
             try {
                 System.out.print("Selecciona una opción: ");
-                opcion = scanner.nextInt();
+                opcion = Integer.parseInt(scanner.nextLine());
                 opcionValida = true;
             } catch (InputMismatchException e) {
                 System.out.println("Error: S'ha d'introduir un numero enter.");
                 scanner.nextLine();
             }
         }
-
 
         return opcion;
     }
