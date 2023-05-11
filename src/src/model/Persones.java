@@ -79,6 +79,11 @@ public class Persones {
         return cog2;
     }
 
+    @Override
+    public String toString() {
+        return String.join(" ",nom, cog1, cog2, sexe, dataNaixement.toString(), dni);
+    }
+
     /*
     public void mostrarPersona() {
         System.out.println(nom + cognom1 + cognom2 + sexe + dataNaixement + dni);
