@@ -2,17 +2,6 @@
 
 # Casualistiques
 
-## Persones
-- Afegir
-- Cercar
-- Modificar
-- Esborrar
-
-## Candidatures
-- Cercar candidatura de persona
-- Cercar persones per candidatura
-
-
 -Afegir una persona amb seguent dades: Pere Pi Pastanaga,M,16-10-1972,57283741H
 INSERT INTO persones (nom,cog1,cog2,sexe,data_naixement,dni)   VALUES ( 'Pere','Pi','Pastanaga','M',DATE("1972-10-16"),'57283741H')
 
