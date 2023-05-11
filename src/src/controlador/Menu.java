@@ -1,7 +1,5 @@
 package controlador;
 
-import model.Connexio;
-
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -9,34 +7,20 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static void iniciar() {
-        Scanner scanner = new Scanner(System.in);
-        int opcio = 0;
+    public static void principal() {
 
-        Connexio db = new Connexio();
-        db.conectar();
+        int opcio;
 
         do {
-//            System.out.println("Seleccione una opción:");
-//            System.out.println("1. Personas");
-//            System.out.println("2. Candidatos");
-//            System.out.println("3. Candidaturas");
-//            System.out.println("0. Salir");
-//
-//            opcion = scanner.nextInt();
-//            opcion = vista.Menu.mostrar()
-//            opcio = vista.Menu.mostrar(Arrays.asList("Persones","Candidats", "Candidatures", "Sortir"), scanner);
             List<String> opcions = Arrays.asList("Persones", "Candidats", "Candidatures", "Sortir");
             vista.Menu.mostrar(opcions);
-            opcio = escoltarOpcio(opcions, scanner);
-//            System.out.println("Has seleccionat el numero : "+ Menu.mostrar(Arrays.asList("Persones","Candidats", "Candidatures")));
-//            opcion = Menu.mostrar(Arrays.asList("Opción 1", "Opción 2", "Opción 3"));
+            opcio = escoltarOpcio();
 
-//            opcion = 0;
             System.out.println("Has seleccionat el numero " + opcio);
             switch (opcio) {
                 case 1:
                     System.out.println("Has seleccionat Persones");
+                    Persona.menu();
                     break;
                 case 2:
                     System.out.println("Has seleccionat Candidats");
@@ -53,26 +37,29 @@ public class Menu {
             }
         } while (opcio != 0);
 
-        scanner.close();
-        db.desconectar();
     }
 
-    static int escoltarOpcio(List<String> opciones, Scanner scanner) {
+    static int escoltarOpcio() {
+
+        Scanner scanner = Controlador.scanner;
         int opcion = 0;
-        System.out.print("Selecciona una opción: ");
-        try {
-            opcion = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Error: S'ha d'introduir un numero enter..");
-            scanner.nextLine();
+        boolean opcionValida = false;
+
+        while (!opcionValida) {
+            try {
+                System.out.print("Selecciona una opción: ");
+                opcion = scanner.nextInt();
+                opcionValida = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: S'ha d'introduir un numero enter.");
+                scanner.nextLine();
+            }
         }
+
+
         return opcion;
     }
 
-
-//    public static void persones() {
-//
-//    }
 
 }
 
