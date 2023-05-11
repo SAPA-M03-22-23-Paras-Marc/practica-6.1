@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class Connexio {
     // Variables de conexión
-    private static  final String URL = "jdbc:mysql://localhost:3306/jdbc-pt1";
+    private static final String URL = "jdbc:mysql://localhost:3306/jdbc-pt1";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    private static  Connection connexio = null;
+    private static Connection connexio = null;
 
     // Método para establecer la conexión
     public static Connection conectar() {
@@ -30,7 +30,7 @@ public class Connexio {
     }
 
     // Método para cerrar la conexión
-    public void desconectar() {
+    public static void desconectar() {
         try {
             if (connexio != null) {
                 connexio.close();
@@ -41,7 +41,7 @@ public class Connexio {
         }
     }
 
-    public Connection getConnexio() {
+    public static Connection getConnexio() {
         return connexio;
     }
 }
