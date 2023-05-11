@@ -11,7 +11,7 @@ public class Persona {
         int opcio;
 
         do {
-            List<String> opcions = Arrays.asList("Crear nou registre", "Cercar registre", "Modificar registre", "Esborrar registre");
+            List<String> opcions = Arrays.asList("Crear nou registre", "Cercar registre", "Modificar registre", "Esborrar registre", "Enrere");
             vista.Menu.mostrar(opcions);
             opcio = Menu.escoltarOpcio();
             switch (opcio) {
@@ -19,13 +19,15 @@ public class Persona {
                     crearPersona();
                     break;
                 case 2:
-                    System.out.println("Has seleccionat Candidats");
+                    System.out.println("Has seleccionat cercar");
                     break;
                 case 3:
-                    System.out.println("Has seleccionat Candidatures");
+                    System.out.println("Has seleccionat modificar");
+                    break;
+                case 4:
+                    System.out.println("Has seleccionat esborrar");
                     break;
                 case 0:
-                    System.out.println("Fins després!");
                     break;
                 default:
                     System.out.println("Opció no válida");
