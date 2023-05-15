@@ -68,6 +68,10 @@ public class Persones {
         this.cog2 = cog2;
     }
 
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
+    }
+
     public int getPersona_id() {
         return persona_id;
     }

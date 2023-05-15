@@ -22,7 +22,7 @@ public class Persona {
                     cercarPersona();
                     break;
                 case 3:
-                    System.out.println("Has seleccionat modificar");
+                    modificarPersona();
                     break;
                 case 4:
                     esborrarPersona();
@@ -45,8 +45,8 @@ public class Persona {
         Date dataNaixement;
         String dni;
 
-        nom = Controlador.demanarDadaAmbRegex("Nom :",".{3,30}");
-        cog1 = Controlador.demanarDadaAmbRegex("Primer cognom :",".{3,30}");
+        nom = Controlador.demanarDadaAmbRegex("Nom :",".{2,30}");
+        cog1 = Controlador.demanarDadaAmbRegex("Primer cognom :",".{2,30}");
         cog2 = Controlador.demanarDadaAmbRegex("Segon cognom :", ".*");
         sexe = Controlador.demanarDadaAmbRegex("Sexe (M, F) :", "^[MF]$");
         dataNaixement = Controlador.demanarData("Data de naixement (format AAAA-MM-DD) :");
@@ -98,9 +98,52 @@ public class Persona {
                 PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
                 pdao.delete(p);
                 System.out.println("S'ha esborrat la persona: " + p.getFullName());
+                return;
+            }
+        }
+        System.out.println("No s'ha pogut esborrar la persona introduida degut a que l'ID introduit no existeix.");
+    }
+    static void modificarPersona() {
+        int personaId;
+        ArrayList<Persones> llistaPersones = cercarPersona();
+        if (llistaPersones.size() < 1) {
+            System.out.println("No s'ha trobat ninguna persona. Vols introduir l'id igualment?");
+            if (!Objects.equals(Controlador.demanarDadaAmbRegex("Y/n :", "[Yn]"), "Y")) {
+                return;
+            }
+        }
+        personaId = Integer.parseInt(Controlador.demanarDadaAmbRegex("Selecciona una persona introduint el seu id: ", "^\\d+$"));
+        System.out.println("Introdueix les dades que vulguis canviar. En cas de no voler modificar, prem intro per continuar.");
+        for (Persones p: llistaPersones) {
+            if (p.getPersona_id() == personaId) {
+                PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
+                String modificacio = Controlador.demanarDadaAmbRegex("Nou nom ("+p.getNom()+") :", ".{2,30}");
+                if (modificacio.length() > 0) {
+                    p.setNom(modificacio);
+                }
+
+                modificacio = Controlador.demanarDadaAmbRegex("Nou Primer cognom ("+p.getCog1()+") :",".{2,30}");
+                if (modificacio.length() > 0) {
+                    p.setCog1(modificacio);
+                }
+
+                modificacio = Controlador.demanarDadaAmbRegex("Now Segon cognom ("+p.getCog2()+") :", ".*");
+                if (modificacio.length() > 0) {
+                    p.setCog2(modificacio);
+                }
+
+                modificacio = Controlador.demanarDadaAmbRegex("Nou Sexe (M, F) ("+p.getSexe()+") :", "^[MF]$");
+                if (modificacio.length() > 0) {
+                    p.setSexe(modificacio);
+                }
+
+                pdao.update(p);
+                return;
             }
         }
 
-    }
 
+
+
+    }
 }
