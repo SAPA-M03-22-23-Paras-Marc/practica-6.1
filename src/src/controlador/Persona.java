@@ -90,7 +90,6 @@ public class Persona {
             if (!Objects.equals(Controlador.demanarDadaAmbRegex("Y/n :", "[Yn]"), "Y")) {
                 return;
             }
-            vista.Persona.mostrarPersones(llistaPersones);
         }
         personaId = Integer.parseInt(Controlador.demanarDadaAmbRegex("Selecciona una persona introduint el seu id: ", "^\\d+$"));
         for (Persones p: llistaPersones) {
