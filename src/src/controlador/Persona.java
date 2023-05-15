@@ -25,7 +25,7 @@ public class Persona {
                     System.out.println("Has seleccionat modificar");
                     break;
                 case 4:
-                    System.out.println("Has seleccionat esborrar");
+                    esborrarPersona();
                     break;
                 case 0:
                     break;
@@ -90,9 +90,17 @@ public class Persona {
             if (!Objects.equals(Controlador.demanarDadaAmbRegex("Y/n :", "[Yn]"), "Y")) {
                 return;
             }
-
+            vista.Persona.mostrarPersones(llistaPersones);
         }
-        personaId = Integer.parseInt(Controlador.demanarDadaAmbRegex("ID: ", "^\\d+$"));
+        personaId = Integer.parseInt(Controlador.demanarDadaAmbRegex("Selecciona una persona introduint el seu id: ", "^\\d+$"));
+        for (Persones p: llistaPersones) {
+            if (p.getPersona_id() == personaId) {
+                PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
+                pdao.delete(p);
+                System.out.println("S'ha esborrat la persona: " + p.getFullName());
+            }
+        }
+
     }
 
 }
