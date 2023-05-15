@@ -77,8 +77,8 @@ public class PersonesDAODB implements DAODB<Persones> {
             if (!Objects.equals(persona.getCog2(), "")) {
                 statement.setString(3, "%" + persona.getCog2() + "%");
             }
-            String query = statement.toString();
-            System.out.println("Query: " + query.substring(query.indexOf(":") + 2));
+//            String query = statement.toString();
+//            System.out.println("Query: " + query.substring(query.indexOf(":") + 2));
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -93,7 +93,7 @@ public class PersonesDAODB implements DAODB<Persones> {
                 Persones p = new Persones(personaId, nom, cog1, cog2, sexe, dataNaixement, dni);
 
                 llistaPersones.add(p);
-            };
+            }
 
             return llistaPersones;
         } catch (SQLException e) {

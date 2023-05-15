@@ -16,7 +16,6 @@ public class Menu {
             vista.Menu.mostrar(opcions);
             opcio = escoltarOpcio();
 
-            System.out.println("Has seleccionat el numero " + opcio);
             switch (opcio) {
                 case 1:
                     System.out.println("Has seleccionat Persones");
@@ -53,8 +52,11 @@ public class Menu {
             } catch (InputMismatchException e) {
                 System.out.println("Error: S'ha d'introduir un numero enter.");
                 scanner.nextLine();
+            } catch (NumberFormatException e) {
+                return -1;
             }
         }
+
 
         return opcion;
     }

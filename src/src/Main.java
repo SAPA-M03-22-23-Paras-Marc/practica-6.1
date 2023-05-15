@@ -8,6 +8,10 @@ public class Main {
 
         Connexio.conectar();
 
+        if (Connexio.getConnexio() == null) {
+            return;
+        }
+
         Controlador.generarScanner();
 
         Menu.principal();
