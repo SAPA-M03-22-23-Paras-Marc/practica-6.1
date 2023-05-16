@@ -34,31 +34,7 @@ public class PersonesDAODB implements DAODB<Persones> {
         }
     }
 
-//    @Override
-//    public boolean read(Persones persona) {
-//        try {
-//            String sql = "SELECT * FROM persones WHERE nom LIKE ? AND cog1 LIKE ? AND cog2 LIKE ?";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setString(1, persona.getNom());
-//            statement.setString(2, persona.getCog1());
-//            statement.setString(3, persona.getCog2());
-//            ResultSet resultSet = statement.executeQuery();
-//            if (resultSet.next()) {
-//                String nom = resultSet.getString("nom");
-//                String cog1 = resultSet.getString("cog1");
-//                String cog2 = resultSet.getString("cog2");
-//                persona.setNom(nom);
-//                persona.setCog1(cog1);
-//                persona.setCog2(cog2);
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
+
 
     public ArrayList<Persones> read(Persones persona) {
         ArrayList<Persones> llistaPersones = new ArrayList<Persones>();
@@ -77,8 +53,7 @@ public class PersonesDAODB implements DAODB<Persones> {
             if (!Objects.equals(persona.getCog2(), "")) {
                 statement.setString(3, "%" + persona.getCog2() + "%");
             }
-//            String query = statement.toString();
-//            System.out.println("Query: " + query.substring(query.indexOf(":") + 2));
+
 
             ResultSet resultSet = statement.executeQuery();
 

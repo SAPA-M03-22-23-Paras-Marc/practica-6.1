@@ -114,12 +114,7 @@ public class Persones {
         return String.join(" ", nom, cog1, cog2);
     }
 
-    /*
-    public void mostrarPersona() {
-        System.out.println(nom + cognom1 + cognom2 + sexe + dataNaixement + dni);
-    }
 
- */
 
 
 }
