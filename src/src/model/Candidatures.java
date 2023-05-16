@@ -17,7 +17,7 @@ public class Candidatures {
     }
 
     public Candidatures(String nomCandidatura) {
-        this.nom_llarg = nomCandidatura;
+        this.nom_curt = nomCandidatura;
     }
 
     public void setCandidatura_id(int candidatura_id) {
