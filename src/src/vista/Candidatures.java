@@ -1,12 +1,10 @@
 package vista;
 
-import model.Persones;
-
 import java.util.ArrayList;
 
 public class Candidatures {
 
-    static String leftAlignFormat = "| %-5s | %-6s | %-30s | %-75s | %-6s | %-6s | %-6s |%n";
+    static String leftAlignFormat = "| %-5s | %-6s | %-30s | %-75s | %-10s | %-10s | %-10s |%n";
 
     public static void mostrarCandidatura(model.Candidatures c) {
 
@@ -21,9 +19,9 @@ public class Candidatures {
     }
 
     public static void mostrarCandidatures(ArrayList<model.Candidatures> candidatures) {
-        System.out.println("-".repeat(108));
+        System.out.println("-".repeat(168));
         System.out.format(leftAlignFormat,"ID", "Codi", "Nom Curt", "Nom llarc", "Acum prov", "Acum cat", "Acum nac");
-        System.out.println("-".repeat(108));
+        System.out.println("-".repeat(168));
         if (candidatures.size() != 0) {
             for (model.Candidatures c: candidatures) {
                 mostrarCandidatura(c);
@@ -31,20 +29,23 @@ public class Candidatures {
         }else {
             System.out.format("| %-104s |\n", "No s'han trobat resultats");
         }
-        System.out.println("-".repeat(108));
+        System.out.println("-".repeat(168));
     }
 
     public static void main(String[] args) {
-//        ArrayList<Persones> list = new ArrayList<Persones>();
-//        list.add(new Persones(10, "Juan", "Perez", "Gonzalez"));
-//        list.add(new Persones(10, "Bruce", "Wayne", ""));
-//        list.add(new Persones(10, "John", "Smith", ""));
-//        list.add(new Persones(10, "Marc", "Peral", "Cajidos"));
-//        Persones p = new Persones(10, "Juan", "Perez", "Gonzalez");
-//        PersonesDAODB pDAODB = new PersonesDAODB(Connexio.conectar());
-//        list = (ArrayList<Persones>) pDAODB.all();
+//        ArrayList<model.Candidatures> list = new ArrayList<model.Candidatures>();
+//        list.add(
+//                new model.Candidatures(
+//                        9999,
+//                        1,
+//                        0,
+//                        "AHORA CANAR",
+//                        "AHORA CANARIAS: Alternativa Nacionalista",
+//                        0,
+//                        0,
+//                        0
+//                ));
 //
-//
-//        Persona.mostrarPersones(list);
+//        mostrarCandidatures(list);
     }
 }
