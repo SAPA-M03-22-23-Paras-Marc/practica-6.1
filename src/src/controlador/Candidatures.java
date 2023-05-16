@@ -10,7 +10,7 @@ public class Candidatures {
 
 
 
-    public static void menu() {
+    public static void menu() throws Exception {
         int opcio;
 
         do {
@@ -33,22 +33,15 @@ public class Candidatures {
         } while (opcio != 0);
     }
 
-    private static void cercarCandidatura() {
-        int persona_id;
+    private static void cercarCandidatura() throws Exception {
+        Persones persona_id;
 
-        persona_id = Persona.seleccionarPersona().getPersona_id();
-        //persona_id = Integer.parseInt(Controlador.demanarDadaAmbRegex("ID Persona :","\\d+$"));
-         //Candidatures ca = new Candidatures(persona_id);
-        CandidaturesDAODB cadao = new CandidaturesDAODB(Connexio.getConnexio());
-      //  CandidatsDAODB cdao = new CandidatsDAODB(Connexio.getConnexio());
-       // ArrayList<Candidats> llistaCandidats = cdao.read(c);
-        ArrayList<model.Candidatures> llistaCandidatures = cadao.read();
+        persona_id = Persona.seleccionarPersona();
+        CandidaturesDAODB cdao = new CandidaturesDAODB(Connexio.getConnexio());
 
-      /* if(llistaCandidats.size() > 0) {
-           System.out.println(llistaCandidats.get(0));
-       }
+        ArrayList<model.Candidatures> llistaCandidatures = cdao.CandidaturaQuery(persona_id);
 
-       */
+        vista.Candidatures.mostrarCandidatures(llistaCandidatures);
 
     }
 

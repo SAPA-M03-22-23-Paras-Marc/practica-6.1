@@ -7,12 +7,12 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static void principal() {
+    public static void principal() throws Exception {
 
         int opcio;
 
         do {
-            List<String> opcions = Arrays.asList("Persones", "Candidats", "Candidatures", "Sortir");
+            List<String> opcions = Arrays.asList("Persones","Candidatures", "Sortir");
             vista.Menu.mostrar(opcions);
             opcio = escoltarOpcio();
 
@@ -22,9 +22,6 @@ public class Menu {
                     Persona.menu();
                     break;
                 case 2:
-                    System.out.println("Has seleccionat Candidats");
-                    break;
-                case 3:
                     System.out.println("Has seleccionat Candidatures");
                     Candidatures.menu();
                     break;
