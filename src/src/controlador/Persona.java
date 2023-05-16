@@ -97,6 +97,7 @@ public class Persona {
         Persones p = seleccionarPersona();
         System.out.println("Introdueix les dades que vulguis canviar. En cas de no voler modificar, prem intro per continuar.");
         PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
+        assert p != null;
         String modificacio = Controlador.demanarDadaAmbRegex("Nou nom ("+p.getNom()+") :", ".{2,30}");
         if (modificacio.length() > 0) {
             p.setNom(modificacio);
@@ -132,6 +133,11 @@ public class Persona {
                 return null;
             }
         }
+
+        if (llistaPersones.size() == 1) {
+            return llistaPersones.get(0);
+        }
+
         personaId = Integer.parseInt(Controlador.demanarDadaAmbRegex("Selecciona una persona introduint el seu id: ", "^\\d+$"));
         for (Persones p: llistaPersones) {
             if (p.getPersona_id() == personaId) {
