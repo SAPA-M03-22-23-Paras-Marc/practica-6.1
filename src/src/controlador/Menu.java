@@ -26,6 +26,7 @@ public class Menu {
                     break;
                 case 3:
                     System.out.println("Has seleccionat Candidatures");
+                    Candidatures.menu();
                     break;
                 case 0:
                     System.out.println("Fins després!");

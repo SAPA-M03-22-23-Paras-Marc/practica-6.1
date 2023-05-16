@@ -1,22 +1,19 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CandidaturesDAODB implements DAODB<Candidatures> {
 
-     private  Connection connection;
+    private Connection connection;
 
     public CandidaturesDAODB(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public  boolean create(Candidatures ca) {
+    public boolean create(Candidatures ca) {
         try {
             String sql = "INSERT INTO candidatures (candidatura_id, eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -160,6 +157,30 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
         }
         return candidatures;
     }
+
+    public static ArrayList<Candidatures> CandidaturaQuery() throws Exception {
+        ArrayList<Candidatures> Candidatura = new ArrayList<>();
+
+        try {
+
+            String sql = "SELECT *\n" +
+                    " FROM candidatures\n" +
+                    "INNER JOIN candidats ON candidats.candidatura_id = candidatures.candidatura_id\n" +
+                    "INNER JOIN persones ON persones.persona_id = candidats.persona_id \n" +
+                    "WHERE persones.persona_id = ? ";
+            PreparedStatement statement = Connexio.getConnexio().prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                while (resultSet.next()) {
+                    int persona_id = resultSet.getInt("persona_id");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Candidatura;
+    }
+
 }
 
 

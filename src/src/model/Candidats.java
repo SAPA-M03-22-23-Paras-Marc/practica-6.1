@@ -15,6 +15,10 @@ public class Candidats {
 
     }
 
+    public Candidats(int persona_id) {
+        this.persona_id = persona_id;
+    }
+
 
     public void setCandidat_id(int candidat_id) {
         this.candidat_id = candidat_id;
