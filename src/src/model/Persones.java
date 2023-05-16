@@ -52,6 +52,8 @@ public class Persones {
         this.cog2 = cog2;
     }
 
+
+
     public void setPersona_id(int persona_id) {
         this.persona_id = persona_id;
     }
