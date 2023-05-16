@@ -14,7 +14,7 @@ public class Candidatures {
         int opcio;
 
         do {
-            List<String> opcions = Arrays.asList("Cercar Candidatura per ID persona", "Cercar persones per nom_curt Candidatures", "Enrere");
+            List<String> opcions = Arrays.asList("Cercar Candidatura per ID persona", "Cercar persones per Nom Curt Candidatures", "Enrere");
             vista.Menu.mostrar(opcions);
             opcio = Menu.escoltarOpcio();
             switch (opcio) {
@@ -64,7 +64,7 @@ public class Candidatures {
     }
 
     private static void cercarPersCandidatures() {
-        String nomCandidatura = Controlador.demanarDadaAmbRegex("Nom llarg de la candidatura: ", ".*{1,100}");
+        String nomCandidatura = Controlador.demanarDadaAmbRegex("Nom curt de la candidatura: ", ".*{2,50}");
         PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
         model.Candidatures candidatura = new model.Candidatures(nomCandidatura);
 

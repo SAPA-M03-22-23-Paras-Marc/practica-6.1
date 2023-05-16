@@ -178,9 +178,9 @@ public class PersonesDAODB implements DAODB<Persones> {
             String sql = "    SELECT * FROM persones\n" +
                     "    INNER JOIN candidats ON candidats.persona_id = persones.persona_id\n" +
                     "    INNER JOIN candidatures ON candidatures.candidatura_id = candidats.candidatura_id\n" +
-                    "    WHERE candidatures.nom_llarg = ?";
+                    "    WHERE candidatures.nom_curt = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, candidatura.nom_llarg);
+            statement.setString(1, candidatura.nom_curt);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int personaId = resultSet.getInt("persona_id");
