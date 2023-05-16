@@ -16,6 +16,10 @@ public class Candidatures {
 
     }
 
+    public Candidatures(String nomCandidatura) {
+        this.nom_llarg = nomCandidatura;
+    }
+
     public void setCandidatura_id(int candidatura_id) {
         this.candidatura_id = candidatura_id;
     }

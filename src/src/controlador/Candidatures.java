@@ -64,6 +64,11 @@ public class Candidatures {
     }
 
     private static void cercarPersCandidatures() {
+        String nomCandidatura = Controlador.demanarDadaAmbRegex("Nom llarg de la candidatura: ", ".*{1,100}");
+        PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
+        model.Candidatures candidatura = new model.Candidatures(nomCandidatura);
 
+        ArrayList<Persones> llistaPersones = pdao.getPersonesFromCandidatures(candidatura);
+        vista.Persona.mostrarPersones(llistaPersones);
     }
 }

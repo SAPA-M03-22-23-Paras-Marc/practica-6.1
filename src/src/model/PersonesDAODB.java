@@ -196,4 +196,35 @@ public class PersonesDAODB implements DAODB<Persones> {
 
         }
     }
+
+    public ArrayList<Persones> getPersonesFromCandidatures(Candidatures candidatura) {
+        ArrayList<Persones> llistaPersones = new ArrayList<>();
+        try {
+            String sql = "    SELECT * FROM persones\n" +
+                    "    INNER JOIN candidats ON candidats.persona_id = persones.persona_id\n" +
+                    "    INNER JOIN candidatures ON candidatures.candidatura_id = candidats.candidatura_id\n" +
+                    "    WHERE candidatures.nom_llarg = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, candidatura.nom_llarg);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int personaId = resultSet.getInt("persona_id");
+                String nom = resultSet.getString("nom");
+                String cog1 = resultSet.getString("cog1");
+                String cog2 = resultSet.getString("cog2");
+                String sexe = resultSet.getString("sexe");
+                java.sql.Date dataNaixement = resultSet.getDate("data_naixement");
+                String dni = resultSet.getString("dni");
+                Persones p = new Persones(personaId, nom, cog1, cog2, sexe, dataNaixement, dni);
+
+                llistaPersones.add(p);
+            }
+
+            return llistaPersones;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
