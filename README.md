@@ -1,7 +1,10 @@
 # practica-6.1
 
-# Casualistiques
+## Configuracio
+La configuracio inicial de la connexio amb la base de dades tindra en compte que la ip será "localhost", l'usuari root, i la contrasneya sera ""(buida).
+En cas de voler canviar-ho, s'haura de fer en [classe Connexio](src/src/model/Connexio.java) modificant les variables que indiquen la URL, port, etc...
 
+# Casualistiques
 - Afegir una persona amb seguent dades: Pere Pi Pastanaga,M,16-10-1972,57283741H
     INSERT INTO persones (nom,cog1,cog2,sexe,data_naixement,dni)   VALUES ( 'Pere','Pi','Pastanaga','M',DATE("1972-10-16"),'57283741H')
 
