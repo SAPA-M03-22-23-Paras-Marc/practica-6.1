@@ -57,7 +57,7 @@ public class Candidatures {
         PersonesDAODB pdao = new PersonesDAODB(Connexio.getConnexio());
 
         ArrayList<Persones> llistaPersones = pdao.read(p);
-//        System.out.println(llistaPersones);
+
 
         vista.Persona.mostrarPersones(llistaPersones);
         return llistaPersones;

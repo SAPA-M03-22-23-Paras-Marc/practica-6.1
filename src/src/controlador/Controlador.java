@@ -39,8 +39,7 @@ public class Controlador {
         boolean dataValida = false;
         while (!dataValida) {
             String dataString = demanarDadaAmbRegex(prompt,"^((19)|(20))\\d{2}\\-[01]\\d\\-[0-3]\\d$");
-//            System.out.print(prompt);
-//            String dataString = scanner.nextLine();
+
             try {
                 data = formatoFecha.parse(dataString);
                 dataValida = true;
