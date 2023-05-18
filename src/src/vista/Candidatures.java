@@ -1,6 +1,10 @@
 package vista;
 
+import model.CandidaturesDAODB;
+import model.Connexio;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Candidatures {
 
@@ -46,6 +50,12 @@ public class Candidatures {
 //                        0
 //                ));
 //
-//        mostrarCandidatures(list);
+        Connexio.conectar();
+
+        CandidaturesDAODB cdao = new CandidaturesDAODB(Connexio.getConnexio());
+
+        mostrarCandidatures(cdao.all());
+
+        Connexio.desconectar();
     }
 }
