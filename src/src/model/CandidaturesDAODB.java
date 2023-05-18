@@ -15,7 +15,7 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
     @Override
     public boolean create(Candidatures ca) {
         try {
-            String sql = "INSERT INTO candidatures (candidatura_id, eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO candidatures (candidatura_id, eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulario_nacional) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, ca.getCandidatura_id());
             statement.setInt(2, ca.getEleccio_id());
@@ -49,7 +49,7 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
                 String nom_llarg = resultSet.getString("nom_llarg");
                 int codi_acumulacio_provincia = resultSet.getInt("codi_acumulacio_provincia");
                 int codi_acumulacio_ca = resultSet.getInt("codi_acumulacio_ca");
-                int codi_acumulacio_nacional = resultSet.getInt("codi_acumulacio_nacional");
+                int codi_acumulacio_nacional = resultSet.getInt("codi_acumulario_nacional");
                 ca.setEleccio_id(eleccio_id);
                 ca.setCodi_candidatura(codi_candidatura);
                 ca.setNom_curt(nom_curt);
@@ -70,7 +70,7 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
     @Override
     public boolean update(Candidatures ca) {
         try {
-            String sql = "UPDATE candidatures SET eleccio_id=?, codi_candidatura=?, nom_curt=?, nom_llarg=?, codi_acumulacio_provincia=?, codi_acumulacio_ca=?, codi_acumulacio_nacional=? WHERE candidatura_id=?";
+            String sql = "UPDATE candidatures SET eleccio_id=?, codi_candidatura=?, nom_curt=?, nom_llarg=?, codi_acumulacio_provincia=?, codi_acumulacio_ca=?, codi_acumulario_nacional=? WHERE candidatura_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, ca.getEleccio_id());
             statement.setInt(2, ca.getCodi_candidatura());
@@ -134,8 +134,8 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
     }
 
     @Override
-    public List<Candidatures> all() {
-        List<Candidatures> candidatures = new ArrayList<>();
+    public ArrayList<Candidatures> all() {
+        ArrayList<Candidatures> candidatures = new ArrayList<>();
         try {
             String sql = "SELECT * FROM candidatures";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -148,7 +148,7 @@ public class CandidaturesDAODB implements DAODB<Candidatures> {
                 String nom_llarg = resultSet.getString("nom_llarg");
                 int codi_acumulacio_provincia = resultSet.getInt("codi_acumulacio_provincia");
                 int codi_acumulacio_ca = resultSet.getInt("codi_acumulacio_ca");
-                int codi_acumulacio_nacional = resultSet.getInt("codi_acumulacio_nacional");
+                int codi_acumulacio_nacional = resultSet.getInt("codi_acumulario_nacional");
                 Candidatures candidatura = new Candidatures(candidatura_id, eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 candidatures.add(candidatura);
             }
